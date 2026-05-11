@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">M</span>
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center overflow-hidden p-1 shadow-lg">
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain invert" />
               </div>
               <span className="text-2xl font-bold text-primary tracking-tight">MichaelKeysoft</span>
             </div>

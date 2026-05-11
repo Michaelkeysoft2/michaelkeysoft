@@ -30,8 +30,8 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center space-x-2"
         >
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-xl">M</span>
+          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center overflow-hidden p-1 shadow-lg border border-white/20">
+            <img src="/logo.png" alt="MichaelKeysoft Logo" className="w-full h-full object-contain invert" />
           </div>
           <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-primary' : 'text-primary'}`}>
             MichaelKeysoft
