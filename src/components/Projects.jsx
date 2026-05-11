@@ -19,6 +19,22 @@ const projects = [
     link: 'https://foodprice-solution.vercel.app/',
     github: 'https://github.com/',
   },
+  {
+    title: 'The Royal Times',
+    category: 'News & Media',
+    description: 'A global news platform delivering accurate, timely, and insightful news to a worldwide audience.',
+    image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    link: 'https://theroyaltimes.com',
+    github: 'https://github.com/',
+  },
+  {
+    title: 'Chigroup Recyclers',
+    category: 'Agro-Tech & Recycling',
+    description: 'Advanced farming solutions and eco-friendly motor scrap recycling platform with specialized logistics.',
+    image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    link: 'https://chigroupng.com',
+    github: 'https://github.com/',
+  },
 ];
 
 const Projects = () => {
@@ -31,10 +47,10 @@ const Projects = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-4">Featured Work</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-4">Success Stories</h2>
             <div className="w-20 h-1.5 bg-accent rounded-full mb-6"></div>
             <p className="text-gray-600 max-w-xl text-lg">
-              Explore my latest projects where I combine design and technology to solve real-world problems.
+              We collaborate with forward-thinking organizations to build modern digital experiences that drive real impact.
             </p>
           </motion.div>
           
@@ -45,22 +61,22 @@ const Projects = () => {
             className="mt-8 md:mt-0"
           >
             <a href="#" className="flex items-center text-accent font-bold group">
-              View All Projects <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+              View Full Portfolio <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
             </a>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <div className="relative overflow-hidden rounded-[40px] mb-8 bg-gray-100 aspect-video shadow-2xl">
+              <div className="relative overflow-hidden rounded-[40px] mb-8 bg-gray-100 aspect-video shadow-2xl border border-gray-100">
                 <img 
                   src={project.image} 
                   alt={project.title} 
@@ -97,8 +113,8 @@ const Projects = () => {
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  {['React', 'Tailwind', 'Vite', 'Framer Motion'].map(tag => (
-                    <span key={tag} className="px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">
+                  {['React', 'Vite', 'Enterprise', 'Scalable'].map(tag => (
+                    <span key={tag} className="px-4 py-1.5 bg-gray-50 text-gray-400 rounded-full text-xs font-bold tracking-widest uppercase">
                       {tag}
                     </span>
                   ))}
