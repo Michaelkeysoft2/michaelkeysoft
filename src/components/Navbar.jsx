@@ -30,8 +30,20 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center space-x-2"
         >
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center overflow-hidden p-1 shadow-lg border border-white/20">
-            <img src="/logo.png" alt="MichaelKeysoft Logo" className="w-full h-full object-contain invert" />
+          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center p-2 shadow-lg border border-white/10">
+            <div 
+              className="w-full h-full bg-white"
+              style={{ 
+                maskImage: 'url(/logo.png)', 
+                WebkitMaskImage: 'url(/logo.png)',
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskPosition: 'center'
+              }}
+            />
           </div>
           <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-primary' : 'text-primary'}`}>
             MichaelKeysoft
