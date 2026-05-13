@@ -34,8 +34,8 @@ const Navbar = () => {
             <div 
               className="w-full h-full bg-white"
               style={{ 
-                maskImage: 'url(/logo.png)', 
-                WebkitMaskImage: 'url(/logo.png)',
+                maskImage: 'url(/logo.jpg)', 
+                WebkitMaskImage: 'url(/logo.jpg)',
                 maskSize: 'contain',
                 WebkitMaskSize: 'contain',
                 maskRepeat: 'no-repeat',
