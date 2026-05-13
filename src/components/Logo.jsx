@@ -8,27 +8,27 @@ const Logo = ({ className = "w-10 h-10", color = "currentColor" }) => {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Thin circle outline - frame that touches both legs of the M */}
+      {/* Thin circle outline - the "base" path */}
       <path 
         d="M20 80 A 40 40 0 1 1 80 80" 
         stroke={color} 
         strokeWidth="2" 
-        opacity="0.6"
+        opacity="0.5"
       />
       
-      {/* The thick accent arc - lies ON the circle and touches the left leg at (20,80) */}
+      {/* The thick accent arc - lies ON the circle path, providing that bold branding look */}
       <path 
-        d="M20 80 A 40 40 0 0 1 35 45" 
+        d="M20 80 A 40 40 0 0 1 35 40" 
         stroke={color} 
         strokeWidth="10" 
         strokeLinecap="round"
       />
       
-      {/* Stylized 'M' - exactly aligned to the circle intersection points */}
+      {/* Stylized 'M' - slightly thinner than the arc to ensure the arc "rests" clearly on the path */}
       <path 
-        d="M20 80 L40 40 L50 60 L60 40 L80 80" 
+        d="M22 78 L42 42 L50 62 L58 42 L78 78" 
         stroke={color} 
-        strokeWidth="10" 
+        strokeWidth="8" 
         strokeLinejoin="round" 
         strokeLinecap="round"
       />
