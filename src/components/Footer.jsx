@@ -12,7 +12,10 @@ const Footer = () => {
               <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center p-1.5 shadow-lg group">
                 <Logo className="w-full h-full text-white transition-transform group-hover:scale-110" />
               </div>
-              <span className="text-2xl font-bold text-primary tracking-tight">MichaelKeysoft</span>
+              <div>
+                <span className="text-2xl font-bold text-primary tracking-tight">MichaelKeysoft</span>
+                <p className="text-[10px] text-accent font-bold tracking-[0.2em] uppercase mt-1">Fast and Reliable Service</p>
+              </div>
             </div>
             <p className="text-gray-500 max-w-sm mb-8 leading-relaxed">
               Premium software engineering and digital design services tailored to your business needs. Building the future of the web, one pixel at a time.
