@@ -1,5 +1,6 @@
 import React from 'react';
 import { GitBranch, Globe, Monitor, Code, Heart } from 'lucide-react';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -8,20 +9,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center p-2 shadow-lg">
-                <div 
-                  className="w-full h-full bg-white"
-                  style={{ 
-                    maskImage: 'url(/logo.jpg)', 
-                    WebkitMaskImage: 'url(/logo.jpg)',
-                    maskSize: 'contain',
-                    WebkitMaskSize: 'contain',
-                    maskRepeat: 'no-repeat',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskPosition: 'center',
-                    WebkitMaskPosition: 'center'
-                  }}
-                />
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center p-1.5 shadow-lg group">
+                <Logo className="w-full h-full text-white transition-transform group-hover:scale-110" />
               </div>
               <span className="text-2xl font-bold text-primary tracking-tight">MichaelKeysoft</span>
             </div>

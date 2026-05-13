@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Code, Monitor, Smartphone, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from './Logo';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,20 +31,8 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center space-x-2"
         >
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center p-2 shadow-lg border border-white/10">
-            <div 
-              className="w-full h-full bg-white"
-              style={{ 
-                maskImage: 'url(/logo.jpg)', 
-                WebkitMaskImage: 'url(/logo.jpg)',
-                maskSize: 'contain',
-                WebkitMaskSize: 'contain',
-                maskRepeat: 'no-repeat',
-                WebkitMaskRepeat: 'no-repeat',
-                maskPosition: 'center',
-                WebkitMaskPosition: 'center'
-              }}
-            />
+          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center p-1.5 shadow-lg border border-white/10 group">
+            <Logo className="w-full h-full text-white transition-transform group-hover:scale-110" />
           </div>
           <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-primary' : 'text-primary'}`}>
             MichaelKeysoft

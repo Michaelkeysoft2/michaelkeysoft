@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, GitBranch, Globe, Monitor, Code } from 'lucide-react';
+import Logo from './Logo';
 
 const Hero = () => {
   return (
@@ -8,6 +9,11 @@ const Hero = () => {
       {/* Background Shapes */}
       <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent rounded-l-[100px] transform translate-x-20"></div>
       <div className="absolute -bottom-20 -left-20 -z-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+      
+      {/* Background Watermark */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 -z-20 opacity-[0.03]">
+        <Logo className="w-[800px] h-[800px] text-primary" />
+      </div>
 
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center justify-between">
