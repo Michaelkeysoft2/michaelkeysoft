@@ -46,30 +46,30 @@ const itServices = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 bg-gray-50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
+    <section id="services" className="py-16 sm:py-24 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-4">Comprehensive Solutions</h2>
-            <div className="w-20 h-1.5 bg-accent mx-auto rounded-full mb-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4">Comprehensive Solutions</h2>
+            <div className="w-20 h-1.5 bg-accent mx-auto rounded-full mb-4 sm:mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">
               We offer end-to-end digital services—from building your website to keeping it fast, secure, and visible.
             </p>
           </motion.div>
         </div>
 
-        <div className="space-y-20">
+        <div className="space-y-14 sm:space-y-20">
           {/* Web Development Block */}
           <div>
-            <h3 className="text-2xl font-bold text-primary mb-10 flex items-center">
-              <span className="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center mr-4 shadow-lg">1</span>
+            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-6 sm:mb-10 flex items-center">
+              <span className="w-9 h-9 sm:w-10 sm:h-10 bg-primary text-white rounded-lg flex items-center justify-center mr-3 sm:mr-4 shadow-lg flex-shrink-0">1</span>
               Web Development & Design
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {webServices.map((service, index) => (
                 <motion.div
                   key={service.title}
@@ -77,12 +77,12 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 group"
+                  className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 group"
                 >
-                  <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center text-white mb-6 shadow-md group-hover:rotate-6 transition-transform`}>
+                  <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-md group-hover:rotate-6 transition-transform`}>
                     {service.icon}
                   </div>
-                  <h4 className="text-xl font-bold text-primary mb-3">{service.title}</h4>
+                  <h4 className="text-lg sm:text-xl font-bold text-primary mb-2 sm:mb-3">{service.title}</h4>
                   <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
                 </motion.div>
               ))}
@@ -91,11 +91,11 @@ const Services = () => {
 
           {/* IT Support Block */}
           <div>
-            <h3 className="text-2xl font-bold text-primary mb-10 flex items-center">
-              <span className="w-10 h-10 bg-accent text-white rounded-lg flex items-center justify-center mr-4 shadow-lg">2</span>
+            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-6 sm:mb-10 flex items-center">
+              <span className="w-9 h-9 sm:w-10 sm:h-10 bg-accent text-white rounded-lg flex items-center justify-center mr-3 sm:mr-4 shadow-lg flex-shrink-0">2</span>
               Managed IT & Technical Support
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {itServices.map((service, index) => (
                 <motion.div
                   key={service.title}
@@ -103,12 +103,12 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 group"
+                  className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 group"
                 >
-                  <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center text-white mb-6 shadow-md group-hover:rotate-6 transition-transform`}>
+                  <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-md group-hover:rotate-6 transition-transform`}>
                     {service.icon}
                   </div>
-                  <h4 className="text-xl font-bold text-primary mb-3">{service.title}</h4>
+                  <h4 className="text-lg sm:text-xl font-bold text-primary mb-2 sm:mb-3">{service.title}</h4>
                   <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
                 </motion.div>
               ))}
