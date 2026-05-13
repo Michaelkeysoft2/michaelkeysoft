@@ -8,28 +8,29 @@ const Logo = ({ className = "w-10 h-10", color = "currentColor" }) => {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Thin circle outline - the "base" path */}
+      {/* 1. The Circle Frame (The Base) */}
       <path 
         d="M20 80 A 40 40 0 1 1 80 80" 
         stroke={color} 
         strokeWidth="2" 
-        opacity="0.5"
+        opacity="0.4"
       />
       
-      {/* The thick accent arc - lies ON the circle path, providing that bold branding look */}
+      {/* 2. The Stylized M (Inside the circle) */}
       <path 
-        d="M20 80 A 40 40 0 0 1 35 40" 
+        d="M26 74 L44 44 L50 60 L56 44 L74 74" 
         stroke={color} 
-        strokeWidth="10" 
+        strokeWidth="9" 
+        strokeLinejoin="round" 
         strokeLinecap="round"
       />
-      
-      {/* Stylized 'M' - slightly thinner than the arc to ensure the arc "rests" clearly on the path */}
+
+      {/* 3. The Accent Arc (Resting on the circle perimeter) */}
+      {/* It follows the circle path exactly, clearly "covering" the M area from the outside */}
       <path 
-        d="M22 78 L42 42 L50 62 L58 42 L78 78" 
+        d="M20 80 A 40 40 0 0 1 40 10" 
         stroke={color} 
-        strokeWidth="8" 
-        strokeLinejoin="round" 
+        strokeWidth="11" 
         strokeLinecap="round"
       />
     </svg>
