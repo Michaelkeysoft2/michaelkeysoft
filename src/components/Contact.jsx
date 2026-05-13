@@ -29,7 +29,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white/50 text-sm">Email Me</p>
-                    <p className="text-xl font-semibold">michaelkeysoft@gmail.com</p>
+                    <a href="mailto:michaelkeysoft@gmail.com" className="text-xl font-semibold hover:text-accent transition-colors">michaelkeysoft@gmail.com</a>
                   </div>
                 </div>
 
@@ -49,7 +49,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white/50 text-sm">Visit Me</p>
-                    <p className="text-xl font-semibold">3, baroka, Opposite Ui second gate, Ibadan</p>
+                    <p className="text-xl font-semibold">3, Barika, Opposite Ui second gate, Ibadan</p>
                   </div>
                 </div>
               </div>
@@ -98,7 +98,13 @@ const Contact = () => {
                   ></textarea>
                 </div>
                 <button 
-                  type="submit"
+                  type="button"
+                  onClick={() => {
+                    const name = document.querySelector('input[placeholder="John Doe"]').value;
+                    const subject = document.querySelector('input[placeholder="Project Inquiry"]').value;
+                    const message = document.querySelector('textarea').value;
+                    window.location.href = `mailto:michaelkeysoft@gmail.com?subject=${encodeURIComponent(subject || 'Project Inquiry')}&body=${encodeURIComponent(`Name: ${name}\n\n${message}`)}`;
+                  }}
                   className="w-full py-5 bg-accent text-white rounded-2xl font-bold shadow-xl shadow-accent/20 hover:shadow-accent/40 transition-all transform hover:-translate-y-1 flex items-center justify-center space-x-3"
                 >
                   <span>Send Message</span>
