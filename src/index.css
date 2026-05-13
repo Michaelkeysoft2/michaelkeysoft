@@ -42,3 +42,30 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #003366;
 }
+
+/* ── Eliminate any gaps between sections ── */
+section {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Ensure the main layout has no extra gaps */
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent horizontal scroll on all screen sizes */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Container responsive max-width */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
