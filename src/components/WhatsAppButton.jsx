@@ -12,8 +12,19 @@ const WhatsAppButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      whileHover={{ scale: 1.1 }}
+      animate={{ 
+        scale: [1, 1.1, 1],
+        opacity: 1 
+      }}
+      transition={{
+        scale: {
+          repeat: Infinity,
+          duration: 2,
+          ease: "easeInOut"
+        },
+        opacity: { duration: 0.5 }
+      }}
+      whileHover={{ scale: 1.2 }}
       whileTap={{ scale: 0.9 }}
       className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-[#25D366]/40 transition-shadow group"
       aria-label="Contact on WhatsApp"
