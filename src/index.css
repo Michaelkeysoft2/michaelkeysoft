@@ -12,6 +12,10 @@
 }
 
 @layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   body {
     @apply font-sans text-gray-900 bg-white;
   }
@@ -21,6 +25,7 @@
   }
 }
 
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
@@ -50,16 +55,24 @@ section {
   padding-right: 0;
 }
 
+/* ── Scroll offset for fixed navbar (prevents headings being hidden behind navbar) ── */
+/* 72px covers both mobile and desktop navbar heights */
+section[id] {
+  scroll-margin-top: 72px;
+}
+
 /* Ensure the main layout has no extra gaps */
 main {
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 
 /* Prevent horizontal scroll on all screen sizes */
 html, body {
   overflow-x: hidden;
   width: 100%;
+  max-width: 100vw;
 }
 
 /* Container responsive max-width */
@@ -69,3 +82,4 @@ html, body {
   margin-left: auto;
   margin-right: auto;
 }
+

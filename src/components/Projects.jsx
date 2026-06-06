@@ -10,6 +10,7 @@ const projects = [
     image: '/projects/shc.png',
     link: 'https://shc-project.vercel.app/',
     github: 'https://github.com/',
+    tags: ['React', 'Vite', 'Tailwind', 'Vercel'],
   },
   {
     title: 'FoodPrice Solution',
@@ -18,22 +19,7 @@ const projects = [
     image: '/projects/foodprice.png',
     link: 'https://foodprice-solution.vercel.app/',
     github: 'https://github.com/',
-  },
-  {
-    title: 'The Royal Times',
-    category: 'News & Media',
-    description: 'A global news platform delivering accurate, timely, and insightful news to a worldwide audience.',
-    image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: 'https://theroyaltimes.com',
-    github: 'https://github.com/',
-  },
-  {
-    title: 'Chigroup Recyclers',
-    category: 'Agro-Tech & Recycling',
-    description: 'Advanced farming solutions and eco-friendly motor scrap recycling platform with specialized logistics.',
-    image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: 'https://chigroupng.com',
-    github: 'https://github.com/',
+    tags: ['React', 'Node.js', 'Commerce', 'Scalable'],
   },
 ];
 
@@ -66,7 +52,7 @@ const Projects = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -113,8 +99,8 @@ const Projects = () => {
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  {['React', 'Vite', 'Enterprise', 'Scalable'].map(tag => (
-                    <span key={tag} className="px-4 py-1.5 bg-gray-50 text-gray-400 rounded-full text-xs font-bold tracking-widest uppercase">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="px-4 py-1.5 bg-accent/10 text-accent rounded-full text-xs font-bold tracking-widest uppercase">
                       {tag}
                     </span>
                   ))}
