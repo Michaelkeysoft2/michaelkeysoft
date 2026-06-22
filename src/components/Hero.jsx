@@ -45,13 +45,27 @@ const Hero = () => {
       'useEffect(() => { loadData(); }, []);',
     ];
 
+    // Vibrant color palette for code characters
+    const colors = [
+      { bright: '#ff4d6a', medium: 'rgba(255, 77, 106, 0.7)', dim: 'rgba(255, 77, 106, 0.35)' },   // Red
+      { bright: '#ffffff', medium: 'rgba(255, 255, 255, 0.7)', dim: 'rgba(255, 255, 255, 0.3)' },    // White
+      { bright: '#60a5fa', medium: 'rgba(96, 165, 250, 0.7)', dim: 'rgba(96, 165, 250, 0.35)' },     // Blue
+      { bright: '#f472b6', medium: 'rgba(244, 114, 182, 0.7)', dim: 'rgba(244, 114, 182, 0.35)' },   // Pink
+      { bright: '#22d3ee', medium: 'rgba(34, 211, 238, 0.7)', dim: 'rgba(34, 211, 238, 0.35)' },     // Cyan
+      { bright: '#4ade80', medium: 'rgba(74, 222, 128, 0.7)', dim: 'rgba(74, 222, 128, 0.35)' },     // Green
+      { bright: '#fb923c', medium: 'rgba(251, 146, 60, 0.7)', dim: 'rgba(251, 146, 60, 0.35)' },     // Orange
+      { bright: '#c084fc', medium: 'rgba(192, 132, 252, 0.7)', dim: 'rgba(192, 132, 252, 0.35)' },   // Purple
+      { bright: '#facc15', medium: 'rgba(250, 204, 21, 0.7)', dim: 'rgba(250, 204, 21, 0.3)' },      // Yellow
+    ];
+
     // Columns of falling code
-    const fontSize = 14;
+    const fontSize = 18;
     let columns = Math.floor(canvas.width / (fontSize * 0.7));
     const drops = Array(columns).fill(0).map(() => Math.random() * -100);
     const lineIndex = Array(columns).fill(0).map(() => Math.floor(Math.random() * codeLines.length));
     const charIndex = Array(columns).fill(0).map(() => Math.floor(Math.random() * 30));
     const speeds = Array(columns).fill(0).map(() => 0.3 + Math.random() * 0.7);
+    const colColors = Array(columns).fill(0).map(() => colors[Math.floor(Math.random() * colors.length)]);
 
     const draw = () => {
       // Semi-transparent dark background for trail effect
@@ -67,14 +81,15 @@ const Hero = () => {
         const x = i * (fontSize * 0.7);
         const y = drops[i] * fontSize;
 
-        // Bright leading character
+        // Pick color brightness variant for this character
+        const palette = colColors[i];
         const brightness = Math.random();
         if (brightness > 0.7) {
-          ctx.fillStyle = '#60a5fa'; // blue highlight
+          ctx.fillStyle = palette.bright;
         } else if (brightness > 0.4) {
-          ctx.fillStyle = 'rgba(96, 165, 250, 0.7)'; // medium blue
+          ctx.fillStyle = palette.medium;
         } else {
-          ctx.fillStyle = 'rgba(96, 165, 250, 0.3)'; // dim blue
+          ctx.fillStyle = palette.dim;
         }
 
         ctx.fillText(char, x, y);
@@ -83,12 +98,13 @@ const Hero = () => {
         drops[i] += speeds[i];
         charIndex[i]++;
 
-        // Reset when off screen
+        // Reset when off screen — pick a new random color for the column
         if (y > canvas.height + 50) {
           drops[i] = Math.random() * -20;
           lineIndex[i] = Math.floor(Math.random() * codeLines.length);
           charIndex[i] = 0;
           speeds[i] = 0.3 + Math.random() * 0.7;
+          colColors[i] = colors[Math.floor(Math.random() * colors.length)];
         }
       }
     };
