@@ -59,7 +59,7 @@ const Hero = () => {
     ];
 
     // Columns of falling code
-    const fontSize = 18;
+    const fontSize = 21;
     let columns = Math.floor(canvas.width / (fontSize * 0.7));
     const drops = Array(columns).fill(0).map(() => Math.random() * -100);
     const lineIndex = Array(columns).fill(0).map(() => Math.floor(Math.random() * codeLines.length));
