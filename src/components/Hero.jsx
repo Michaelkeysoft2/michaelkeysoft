@@ -25,15 +25,11 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="inline-block px-4 py-1.5 mb-4 text-xs sm:text-sm font-semibold tracking-wider text-accent uppercase bg-accent/10 rounded-full">
-                Empowering Businesses Through Tech
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
-                Powering Your <br />
-                <span className="text-accent">Business</span> Growth
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
+                We Build <span className="text-accent">High-Performing</span> Websites & Technical Solutions for Your Business
               </h1>
               <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                We build high-impact web applications and deliver reliable technical solutions that elevate your organization's digital presence. We handle the complexity so you can stay focused on growth.
+                From custom website development to reliable technical support, we handle the technology so you can focus on growing your business with confidence.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -56,7 +52,7 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Image Block */}
+          {/* Video Block */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -66,11 +62,16 @@ const Hero = () => {
             <div className="relative z-10 w-full max-w-lg mx-auto">
               <div className="absolute inset-0 bg-accent rounded-[40px] rotate-6 transform translate-x-4 translate-y-4 -z-10 opacity-20"></div>
               <div className="bg-white p-3 sm:p-4 rounded-[40px] shadow-2xl overflow-hidden border border-gray-100">
-                <img 
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Business Analytics" 
-                  className="rounded-[30px] w-full h-auto"
-                />
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="rounded-[30px] w-full h-auto object-cover"
+                >
+                  <source src="https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-1730-large.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
               
               {/* Floating Stat - Top Left */}
