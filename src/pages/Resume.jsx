@@ -49,7 +49,7 @@ const Resume = () => {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div>
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-primary dark:text-white print:text-black print:text-3xl">
-                  Michael Keysoft
+                  Michael Olayiwola
                 </h1>
                 <p className="text-accent font-bold text-lg sm:text-xl mt-1 print:text-blue-600 print:text-base">
                   Full Stack Software Engineer &amp; IT Specialist
@@ -77,7 +77,7 @@ const Resume = () => {
               <Award size={20} className="mr-2 text-accent print:text-black" /> Professional Summary
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed print:text-black">
-              Results-driven Full Stack Developer with over 4 years of experience building scalable web applications and delivering reliable IT solutions. Proven expertise in modern React/Vite/Node.js tech stacks. Adept at turning client requirements into high-performing websites and automating digital operations. Commited to writing clean, maintainable code and solving complex technical challenges.
+              Results-driven Full Stack Developer with over 2 years of experience building scalable web applications and delivering reliable IT solutions. Proven expertise in modern React/Vite/Node.js tech stacks. Adept at turning client requirements into high-performing websites and automating digital operations. Committed to writing clean, maintainable code and solving complex technical challenges.
             </p>
           </div>
 
@@ -116,13 +116,13 @@ const Resume = () => {
                 </h2>
                 <div>
                   <h4 className="font-bold text-primary dark:text-white text-sm sm:text-base print:text-black print:text-sm">
-                    B.Sc. Computer Science
+                    University of Ibadan
                   </h4>
                   <p className="text-xs text-gray-500 dark:text-gray-400 print:text-black">
-                    University of Ibadan, Ibadan
+                    Ibadan, Nigeria
                   </p>
                   <p className="text-xs text-accent font-semibold mt-1 print:text-black">
-                    Graduated: 2021
+                    Graduated: 2023
                   </p>
                 </div>
               </div>
@@ -150,7 +150,7 @@ const Resume = () => {
                         </p>
                       </div>
                       <span className="text-xs text-gray-400 dark:text-gray-500 font-semibold print:text-black">
-                        2021 - Present
+                        2025 - Present
                       </span>
                     </div>
                     <ul className="list-disc list-outside ml-4 mt-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 space-y-1.5 print:text-black">
@@ -173,7 +173,7 @@ const Resume = () => {
                         </p>
                       </div>
                       <span className="text-xs text-gray-400 dark:text-gray-500 font-semibold print:text-black">
-                        2019 - 2021
+                        2025 - 2026
                       </span>
                     </div>
                     <ul className="list-disc list-outside ml-4 mt-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 space-y-1.5 print:text-black">
