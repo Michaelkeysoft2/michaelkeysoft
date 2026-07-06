@@ -1,31 +1,35 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from './components/ThemeContext';
+import { ToastProvider } from './components/ToastContext';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import About from './components/About';
-import Services from './components/Services';
-import TechStack from './components/TechStack';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import Home from './pages/Home';
+import CaseStudy from './pages/CaseStudy';
+import Resume from './pages/Resume';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <main>
-        <Hero />
-        <Features />
-        <About />
-        <Services />
-        <TechStack />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    <ThemeProvider>
+      <ToastProvider>
+        <Router>
+          <div className="min-h-screen bg-white dark:bg-[#0a0f1d] text-gray-900 dark:text-gray-100 transition-colors duration-300">
+            <Navbar />
+            <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/case-study/:projectId" element={<CaseStudy />} />
+                <Route path="/resume" element={<Resume />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </main>
+            <Footer />
+            <WhatsAppButton />
+          </div>
+        </Router>
+      </ToastProvider>
+    </ThemeProvider>
   );
 }
 

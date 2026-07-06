@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Monitor, Smartphone, Globe, Layers, Zap, Shield, Headphones, Briefcase } from 'lucide-react';
+import { Code, Monitor, Zap, Headphones, Briefcase, Shield } from 'lucide-react';
 
 const webServices = [
   {
@@ -46,7 +46,7 @@ const itServices = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-16 sm:py-24 bg-gray-50">
+    <section id="services" className="py-16 sm:py-24 bg-gray-50 dark:bg-[#070b14] transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-20">
           <motion.div
@@ -54,20 +54,25 @@ const Services = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4">Comprehensive Solutions</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary dark:text-white mb-4">
+              Comprehensive Solutions
+            </h2>
             <div className="w-20 h-1.5 bg-accent mx-auto rounded-full mb-4 sm:mb-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
               We offer end-to-end digital services—from building your website to keeping it fast, secure, and visible.
             </p>
           </motion.div>
         </div>
 
         <div className="space-y-14 sm:space-y-20">
+          
           {/* Web Development Block */}
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-6 sm:mb-10 flex items-center">
-              <span className="w-9 h-9 sm:w-10 sm:h-10 bg-primary text-white rounded-lg flex items-center justify-center mr-3 sm:mr-4 shadow-lg flex-shrink-0">1</span>
-              Web Development & Design
+            <h3 className="text-xl sm:text-2xl font-bold text-primary dark:text-white mb-6 sm:mb-10 flex items-center">
+              <span className="w-9 h-9 sm:w-10 sm:h-10 bg-primary dark:bg-accent text-white rounded-lg flex items-center justify-center mr-3 sm:mr-4 shadow-lg flex-shrink-0">
+                1
+              </span>
+              Web Development &amp; Design
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {webServices.map((service, index) => (
@@ -77,13 +82,13 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 group"
+                  className="bg-white dark:bg-[#0d1527] p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-800/50 group"
                 >
                   <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-md group-hover:rotate-6 transition-transform`}>
                     {service.icon}
                   </div>
-                  <h4 className="text-lg sm:text-xl font-bold text-primary mb-2 sm:mb-3">{service.title}</h4>
-                  <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
+                  <h4 className="text-lg sm:text-xl font-bold text-primary dark:text-white mb-2 sm:mb-3">{service.title}</h4>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{service.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -91,9 +96,11 @@ const Services = () => {
 
           {/* IT Support Block */}
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-6 sm:mb-10 flex items-center">
-              <span className="w-9 h-9 sm:w-10 sm:h-10 bg-accent text-white rounded-lg flex items-center justify-center mr-3 sm:mr-4 shadow-lg flex-shrink-0">2</span>
-              Managed IT & Technical Support
+            <h3 className="text-xl sm:text-2xl font-bold text-primary dark:text-white mb-6 sm:mb-10 flex items-center">
+              <span className="w-9 h-9 sm:w-10 sm:h-10 bg-accent text-white rounded-lg flex items-center justify-center mr-3 sm:mr-4 shadow-lg flex-shrink-0">
+                2
+              </span>
+              Managed IT &amp; Technical Support
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {itServices.map((service, index) => (
@@ -103,17 +110,18 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 group"
+                  className="bg-white dark:bg-[#0d1527] p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-800/50 group"
                 >
                   <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-md group-hover:rotate-6 transition-transform`}>
                     {service.icon}
                   </div>
-                  <h4 className="text-lg sm:text-xl font-bold text-primary mb-2 sm:mb-3">{service.title}</h4>
-                  <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
+                  <h4 className="text-lg sm:text-xl font-bold text-primary dark:text-white mb-2 sm:mb-3">{service.title}</h4>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{service.description}</p>
                 </motion.div>
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>

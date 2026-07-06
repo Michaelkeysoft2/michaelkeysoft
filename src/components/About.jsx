@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Target, Users, Zap } from 'lucide-react';
+import { Shield, Target, Users, Zap, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const values = [
   {
@@ -27,7 +28,7 @@ const values = [
 
 const About = () => {
   return (
-    <section id="about" className="py-16 sm:py-24 bg-white overflow-hidden">
+    <section id="about" className="py-16 sm:py-24 bg-white dark:bg-[#0a0f1d] text-gray-800 dark:text-gray-200 transition-colors duration-300 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
           
@@ -38,21 +39,32 @@ const About = () => {
             viewport={{ once: true }}
             className="w-full lg:w-1/2"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary dark:text-white mb-4 sm:mb-6">
               Your Technical Partner For <span className="text-accent">Growth</span>
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
               At MichaelKeysoft, we build high-performing websites and deliver reliable technical support that keep your business running smoothly. We handle the complexity of technology so you can focus on what matters most—growing your business.
             </p>
+            
+            <div className="mb-8">
+              <Link 
+                to="/resume"
+                className="inline-flex items-center px-6 py-3 bg-accent text-white font-bold rounded-full transition-all transform hover:-translate-y-0.5 shadow-md shadow-accent/20 hover:bg-accent/90"
+              >
+                <span>View My Professional Credentials</span>
+                <ArrowRight size={18} className="ml-2" />
+              </Link>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
               {values.map((value) => (
                 <div key={value.title} className="flex space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shadow-sm">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gray-50 dark:bg-gray-900 border border-gray-100/50 dark:border-gray-800/80 rounded-2xl flex items-center justify-center shadow-sm">
                     {value.icon}
                   </div>
                   <div>
-                    <h4 className="font-bold text-primary mb-1 sm:mb-2">{value.title}</h4>
-                    <p className="text-sm text-gray-500 leading-relaxed">{value.description}</p>
+                    <h4 className="font-bold text-primary dark:text-white mb-1 sm:mb-2">{value.title}</h4>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{value.description}</p>
                   </div>
                 </div>
               ))}

@@ -1,8 +1,49 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const canvasRef = useRef(null);
+
+  // Typewriter effect states & logic
+  const words = [
+    'Websites',
+    'Web Applications',
+    'E-Commerce Stores',
+    'Cloud Solutions',
+    'Business Automation',
+    'IT Solutions'
+  ];
+  const [wordIndex, setWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    let timer;
+    const handleType = () => {
+      const fullWord = words[wordIndex % words.length];
+      if (!isDeleting) {
+        setCurrentText(fullWord.substring(0, currentText.length + 1));
+        setTypingSpeed(100);
+        if (currentText === fullWord) {
+          timer = setTimeout(() => setIsDeleting(true), 2000);
+          return;
+        }
+      } else {
+        setCurrentText(fullWord.substring(0, currentText.length - 1));
+        setTypingSpeed(55);
+        if (currentText === '') {
+          setIsDeleting(false);
+          setWordIndex(prev => prev + 1);
+          setTypingSpeed(250);
+        }
+      }
+    };
+
+    timer = setTimeout(handleType, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, wordIndex, typingSpeed]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -16,7 +57,6 @@ const Hero = () => {
     resize();
     window.addEventListener('resize', resize);
 
-    // Code snippets that will be "typed"
     const codeLines = [
       'const app = express();',
       'import React from "react";',
@@ -45,20 +85,18 @@ const Hero = () => {
       'useEffect(() => { loadData(); }, []);',
     ];
 
-    // Vibrant color palette for code characters
     const colors = [
-      { bright: '#ff4d6a', medium: 'rgba(255, 77, 106, 0.7)', dim: 'rgba(255, 77, 106, 0.35)' },   // Red
-      { bright: '#ffffff', medium: 'rgba(255, 255, 255, 0.7)', dim: 'rgba(255, 255, 255, 0.3)' },    // White
-      { bright: '#60a5fa', medium: 'rgba(96, 165, 250, 0.7)', dim: 'rgba(96, 165, 250, 0.35)' },     // Blue
-      { bright: '#f472b6', medium: 'rgba(244, 114, 182, 0.7)', dim: 'rgba(244, 114, 182, 0.35)' },   // Pink
-      { bright: '#22d3ee', medium: 'rgba(34, 211, 238, 0.7)', dim: 'rgba(34, 211, 238, 0.35)' },     // Cyan
-      { bright: '#4ade80', medium: 'rgba(74, 222, 128, 0.7)', dim: 'rgba(74, 222, 128, 0.35)' },     // Green
-      { bright: '#fb923c', medium: 'rgba(251, 146, 60, 0.7)', dim: 'rgba(251, 146, 60, 0.35)' },     // Orange
-      { bright: '#c084fc', medium: 'rgba(192, 132, 252, 0.7)', dim: 'rgba(192, 132, 252, 0.35)' },   // Purple
-      { bright: '#facc15', medium: 'rgba(250, 204, 21, 0.7)', dim: 'rgba(250, 204, 21, 0.3)' },      // Yellow
+      { bright: '#ff4d6a', medium: 'rgba(255, 77, 106, 0.7)', dim: 'rgba(255, 77, 106, 0.35)' },
+      { bright: '#ffffff', medium: 'rgba(255, 255, 255, 0.7)', dim: 'rgba(255, 255, 255, 0.3)' },
+      { bright: '#007bff', medium: 'rgba(0, 123, 255, 0.7)', dim: 'rgba(0, 123, 255, 0.35)' },
+      { bright: '#f472b6', medium: 'rgba(244, 114, 182, 0.7)', dim: 'rgba(244, 114, 182, 0.35)' },
+      { bright: '#22d3ee', medium: 'rgba(34, 211, 238, 0.7)', dim: 'rgba(34, 211, 238, 0.35)' },
+      { bright: '#4ade80', medium: 'rgba(74, 222, 128, 0.7)', dim: 'rgba(74, 222, 128, 0.35)' },
+      { bright: '#fb923c', medium: 'rgba(251, 146, 60, 0.7)', dim: 'rgba(251, 146, 60, 0.35)' },
+      { bright: '#c084fc', medium: 'rgba(192, 132, 252, 0.7)', dim: 'rgba(192, 132, 252, 0.35)' },
+      { bright: '#facc15', medium: 'rgba(250, 204, 21, 0.7)', dim: 'rgba(250, 204, 21, 0.3)' },
     ];
 
-    // Columns of falling code
     const fontSize = 21;
     let columns = Math.floor(canvas.width / (fontSize * 0.7));
     const drops = Array(columns).fill(0).map(() => Math.random() * -100);
@@ -68,7 +106,6 @@ const Hero = () => {
     const colColors = Array(columns).fill(0).map(() => colors[Math.floor(Math.random() * colors.length)]);
 
     const draw = () => {
-      // Semi-transparent dark background for trail effect
       ctx.fillStyle = 'rgba(10, 15, 30, 0.06)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -81,7 +118,6 @@ const Hero = () => {
         const x = i * (fontSize * 0.7);
         const y = drops[i] * fontSize;
 
-        // Pick color brightness variant for this character
         const palette = colColors[i];
         const brightness = Math.random();
         if (brightness > 0.7) {
@@ -94,11 +130,9 @@ const Hero = () => {
 
         ctx.fillText(char, x, y);
 
-        // Move drop down
         drops[i] += speeds[i];
         charIndex[i]++;
 
-        // Reset when off screen — pick a new random color for the column
         if (y > canvas.height + 50) {
           drops[i] = Math.random() * -20;
           lineIndex[i] = Math.floor(Math.random() * codeLines.length);
@@ -109,7 +143,6 @@ const Hero = () => {
       }
     };
 
-    // Fill initial background
     ctx.fillStyle = '#0a0f1e';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -132,18 +165,14 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Code Canvas Background */}
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 w-full h-full z-0"
       />
 
-      {/* Dark Overlay — strong enough to make text pop */}
       <div className="absolute inset-0 bg-black/50 z-10"></div>
-      {/* Bottom gradient for extra depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 z-10"></div>
 
-      {/* Content Block */}
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -158,10 +187,13 @@ const Hero = () => {
           </span>
 
           <h1 
-            className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight"
+            className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight min-h-[160px] sm:min-h-[180px] lg:min-h-[220px]"
             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 0 60px rgba(0,0,0,0.5)' }}
           >
-            We Build High-Performing Websites &amp; Technical Solutions for Your Business
+            We Build High-Performing <br />
+            <span className="text-accent inline-block min-w-[200px] border-r-4 border-accent pr-1 select-none whitespace-nowrap">
+              {currentText}
+            </span>
           </h1>
 
           <p 
@@ -171,13 +203,19 @@ const Hero = () => {
             From custom website development to reliable technical support, we handle the technology so you can focus on growing your business with confidence.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto sm:max-w-none">
             <a 
               href="#services"
-              className="w-full sm:w-auto px-10 py-4 bg-accent text-white rounded-full font-bold text-lg shadow-2xl hover:bg-accent/90 transition-all transform hover:-translate-y-1 hover:shadow-accent/30"
+              className="w-full sm:w-auto px-10 py-4 bg-accent text-white rounded-full font-bold text-lg shadow-2xl hover:bg-accent/90 transition-all transform hover:-translate-y-1 hover:shadow-accent/30 text-center"
             >
-              Explore Our Services
+              Explore Services
             </a>
+            <Link 
+              to="/resume"
+              className="w-full sm:w-auto px-10 py-4 bg-white/15 text-white border border-white/20 rounded-full font-bold text-lg shadow-2xl hover:bg-white/25 transition-all transform hover:-translate-y-1 backdrop-blur-md text-center"
+            >
+              View CV / Resume
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -186,4 +224,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
