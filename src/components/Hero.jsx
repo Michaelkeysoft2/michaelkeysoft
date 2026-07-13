@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const canvasRef = useRef(null);
+  const [bgMode, setBgMode] = useState('code'); // 'code' | 'handwriting'
 
   // Typewriter effect states & logic
   const words = [
@@ -45,7 +45,17 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, wordIndex, typingSpeed]);
 
+  // Alternate background mode every 10 seconds
   useEffect(() => {
+    const modeTimer = setInterval(() => {
+      setBgMode(prev => prev === 'code' ? 'handwriting' : 'code');
+    }, 10000);
+    return () => clearInterval(modeTimer);
+  }, []);
+
+  // ---------- CODE RAIN CANVAS ----------
+  useEffect(() => {
+    if (bgMode !== 'code') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -108,31 +118,21 @@ const Hero = () => {
     const draw = () => {
       ctx.fillStyle = 'rgba(10, 15, 30, 0.06)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.font = `${fontSize}px "Fira Code", "Courier New", monospace`;
 
       for (let i = 0; i < columns; i++) {
         const line = codeLines[lineIndex[i] % codeLines.length];
         const char = line[charIndex[i] % line.length] || ' ';
-
         const x = i * (fontSize * 0.7);
         const y = drops[i] * fontSize;
-
         const palette = colColors[i];
         const brightness = Math.random();
-        if (brightness > 0.7) {
-          ctx.fillStyle = palette.bright;
-        } else if (brightness > 0.4) {
-          ctx.fillStyle = palette.medium;
-        } else {
-          ctx.fillStyle = palette.dim;
-        }
-
+        if (brightness > 0.7) ctx.fillStyle = palette.bright;
+        else if (brightness > 0.4) ctx.fillStyle = palette.medium;
+        else ctx.fillStyle = palette.dim;
         ctx.fillText(char, x, y);
-
         drops[i] += speeds[i];
         charIndex[i]++;
-
         if (y > canvas.height + 50) {
           drops[i] = Math.random() * -20;
           lineIndex[i] = Math.floor(Math.random() * codeLines.length);
@@ -145,7 +145,6 @@ const Hero = () => {
 
     ctx.fillStyle = '#0a0f1e';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     const interval = setInterval(draw, 50);
 
     const handleResize = () => {
@@ -161,7 +160,165 @@ const Hero = () => {
       window.removeEventListener('resize', resize);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [bgMode]);
+
+  // ---------- HANDWRITING CANVAS ----------
+  useEffect(() => {
+    if (bgMode !== 'handwriting') return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+
+    // Dark background
+    ctx.fillStyle = '#0a0f1e';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Handwritten-style code lines to "write"
+    const handLines = [
+      'function hello() {',
+      '  let name = "Michael";',
+      '  return `Hello, ${name}!`;',
+      '}',
+      '',
+      'const build = async (dream) => {',
+      '  await code(dream);',
+      '  await deploy();',
+      '  console.log("Live!");',
+      '};',
+      '',
+      'class Developer {',
+      '  constructor() {',
+      '    this.passion = "infinite";',
+      '    this.coffee = true;',
+      '  }',
+      '  ship(product) {',
+      '    return product.launch();',
+      '  }',
+      '}',
+    ];
+
+    const handColors = ['#22d3ee', '#4ade80', '#f472b6', '#facc15', '#fb923c', '#c084fc', '#ff4d6a', '#ffffff'];
+
+    // Flatten all lines into a stream of characters with x,y coords
+    const lineHeight = 32;
+    const charW = 13;
+    const startX = 40;
+    const startY = 60;
+
+    const allChars = [];
+    handLines.forEach((line, li) => {
+      for (let ci = 0; ci < line.length; ci++) {
+        allChars.push({
+          ch: line[ci],
+          x: startX + ci * charW,
+          y: startY + li * lineHeight,
+          color: handColors[li % handColors.length],
+        });
+      }
+      // Newline marker (empty char to advance)
+      allChars.push({ ch: null, x: 0, y: startY + li * lineHeight });
+    });
+
+    let charPos = 0;
+    let frameCount = 0;
+    // Cursor blink
+    let cursorVisible = true;
+    const cursorBlink = setInterval(() => { cursorVisible = !cursorVisible; }, 530);
+
+    const draw = () => {
+      // Redraw background
+      ctx.fillStyle = '#0a0f1e';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw a faint "screen" panel
+      ctx.save();
+      const panelW = Math.min(canvas.width * 0.85, 780);
+      const panelH = Math.min(canvas.height * 0.75, 560);
+      const panelX = (canvas.width - panelW) / 2;
+      const panelY = (canvas.height - panelH) / 2;
+
+      // Panel glow
+      const grd = ctx.createLinearGradient(panelX, panelY, panelX + panelW, panelY + panelH);
+      grd.addColorStop(0, 'rgba(0, 123, 255, 0.07)');
+      grd.addColorStop(1, 'rgba(34, 211, 238, 0.05)');
+      ctx.fillStyle = grd;
+      ctx.strokeStyle = 'rgba(34, 211, 238, 0.25)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.roundRect(panelX, panelY, panelW, panelH, 18);
+      ctx.fill();
+      ctx.stroke();
+
+      // Mac-style dots
+      const dotY = panelY + 20;
+      [['#ff5f57', panelX + 22], ['#ffbd2e', panelX + 42], ['#28c840', panelX + 62]].forEach(([col, dx]) => {
+        ctx.beginPath();
+        ctx.arc(dx, dotY, 6, 0, Math.PI * 2);
+        ctx.fillStyle = col;
+        ctx.fill();
+      });
+
+      // Title bar label
+      ctx.font = '12px "Fira Code", monospace';
+      ctx.fillStyle = 'rgba(255,255,255,0.3)';
+      ctx.fillText('michael.js', panelX + panelW / 2 - 30, panelY + 24);
+
+      // Clip to content area
+      const cX = panelX + 20;
+      const cY = panelY + 50;
+      ctx.beginPath();
+      ctx.rect(cX, cY, panelW - 40, panelH - 60);
+      ctx.clip();
+
+      // Draw already-written chars
+      ctx.font = 'italic 17px "Fira Code", "Courier New", monospace';
+      const written = allChars.slice(0, charPos);
+      written.forEach(c => {
+        if (!c.ch) return;
+        ctx.fillStyle = c.color;
+        ctx.fillText(c.ch, cX + c.x, cY + c.y);
+      });
+
+      // Draw cursor at current write position
+      if (charPos < allChars.length && cursorVisible) {
+        const cur = allChars[charPos];
+        if (cur) {
+          ctx.fillStyle = 'rgba(34, 211, 238, 0.85)';
+          ctx.fillRect(cX + cur.x, cY + cur.y - 16, 2, 20);
+        }
+      }
+
+      ctx.restore();
+
+      frameCount++;
+      // Write one char roughly every 2 frames (~100ms at 50ms interval)
+      if (frameCount % 2 === 0 && charPos < allChars.length) {
+        charPos++;
+        // skip null markers
+        while (charPos < allChars.length && allChars[charPos].ch === null) charPos++;
+      }
+      // Loop: restart after full text is drawn
+      if (charPos >= allChars.length) {
+        setTimeout(() => { charPos = 0; frameCount = 0; }, 1500);
+      }
+    };
+
+    const interval = setInterval(draw, 50);
+    const handleResize = () => { resize(); };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(cursorBlink);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [bgMode]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -210,12 +367,6 @@ const Hero = () => {
             >
               Explore Services
             </a>
-            <Link 
-              to="/resume"
-              className="w-full sm:w-auto px-10 py-4 bg-white/15 text-white border border-white/20 rounded-full font-bold text-lg shadow-2xl hover:bg-white/25 transition-all transform hover:-translate-y-1 backdrop-blur-md text-center"
-            >
-              View CV / Resume
-            </Link>
           </div>
         </motion.div>
       </div>

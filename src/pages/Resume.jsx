@@ -138,7 +138,7 @@ const Resume = () => {
                 </h2>
                 
                 <div className="space-y-6 print:space-y-4">
-                  {/* Job 1 */}
+                  {/* Job 1 - MichaelKeysoft */}
                   <div>
                     <div className="flex justify-between items-start">
                       <div>
@@ -150,7 +150,7 @@ const Resume = () => {
                         </p>
                       </div>
                       <span className="text-xs text-gray-400 dark:text-gray-500 font-semibold print:text-black">
-                        2025 - Present
+                        2025 – Present
                       </span>
                     </div>
                     <ul className="list-disc list-outside ml-4 mt-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 space-y-1.5 print:text-black">
@@ -161,7 +161,7 @@ const Resume = () => {
                     </ul>
                   </div>
 
-                  {/* Job 2 */}
+                  {/* Job 2 - Freelance */}
                   <div>
                     <div className="flex justify-between items-start">
                       <div>
@@ -173,13 +173,37 @@ const Resume = () => {
                         </p>
                       </div>
                       <span className="text-xs text-gray-400 dark:text-gray-500 font-semibold print:text-black">
-                        2025 - 2026
+                        2025 – 2026
                       </span>
                     </div>
                     <ul className="list-disc list-outside ml-4 mt-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 space-y-1.5 print:text-black">
                       <li>Developed and customized CMS themes (WordPress) and custom JavaScript landing pages.</li>
                       <li>Managed local hosting servers, database configuration (MySQL/PostgreSQL), and site migrations.</li>
                       <li>Helped small business clients optimize websites for search engines (SEO), boosting visitor reach by 35%.</li>
+                    </ul>
+                  </div>
+
+                  {/* Job 3 - LOGIXSEVEN */}
+                  <div>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="font-bold text-primary dark:text-white text-base print:text-black print:text-sm">
+                          Software Developer
+                        </h4>
+                        <p className="text-sm text-accent font-semibold print:text-blue-600 print:text-xs">
+                          LOGIXSEVEN
+                        </p>
+                      </div>
+                      <span className="text-xs text-gray-400 dark:text-gray-500 font-semibold print:text-black">
+                        2024 – 2026
+                      </span>
+                    </div>
+                    <ul className="list-disc list-outside ml-4 mt-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 space-y-1.5 print:text-black">
+                      <li>Built and maintained responsive websites and web applications using HTML, CSS, JavaScript, and React.</li>
+                      <li>Collaborated on software development projects using Git and GitHub for version control.</li>
+                      <li>Applied modern web development best practices to create user-friendly and performant interfaces.</li>
+                      <li>Debugged, tested, and improved application functionality to enhance user experience.</li>
+                      <li>Strengthened problem-solving and software development skills through practical project work and continuous learning.</li>
                     </ul>
                   </div>
                 </div>
