@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useToast } from './ToastContext';
 
 const Contact = () => {
@@ -10,7 +10,6 @@ const Contact = () => {
     subject: '',
     message: ''
   });
-  const [isSending, setIsSending] = useState(false);
   const { addToast } = useToast();
 
   const handleInputChange = (e) => {
@@ -19,7 +18,7 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
     // Field validation
@@ -28,65 +27,21 @@ const Contact = () => {
       return;
     }
 
-    setIsSending(true);
+    const emailTo = 'michaelkeysoft@gmail.com';
+    const subject = formData.subject.trim() || 'Project Inquiry';
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    
+    const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.location.href = mailtoUrl;
+    addToast('Opening your email client to send the message...', 'success');
 
-    try {
-      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE';
-
-      // Fallback check if the Vercel key hasn't been configured yet
-      if (accessKey === 'YOUR_ACCESS_KEY_HERE') {
-        console.warn('Web3Forms API key is missing. Add VITE_WEB3FORMS_KEY to Vercel/local .env environment variables.');
-        
-        // Simulate a 1.5 second loading experience and trigger a friendly instructional toast
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        addToast('Preview mode success! Setup VITE_WEB3FORMS_KEY on Vercel for actual delivery.', 'info');
-        
-        // Reset state and DOM fields
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        document.getElementById('contact-name').value = '';
-        document.getElementById('contact-email').value = '';
-        document.getElementById('contact-subject').value = '';
-        document.getElementById('contact-message').value = '';
-        
-        setIsSending(false);
-        return;
-      }
-
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject || 'Project Inquiry from Michaelkeysoft.com',
-          message: formData.message,
-          from_name: 'Michaelkeysoft Portfolio Contact'
-        })
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        addToast('Your message has been delivered to Michael Keysoft!', 'success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        
-        // Reset DOM fields
-        document.getElementById('contact-name').value = '';
-        document.getElementById('contact-email').value = '';
-        document.getElementById('contact-subject').value = '';
-        document.getElementById('contact-message').value = '';
-      } else {
-        addToast(result.message || 'Submission error. Please try again.', 'error');
-      }
-    } catch (error) {
-      console.error('Contact Form Error:', error);
-      addToast('Network error. Failed to deliver message.', 'error');
-    } finally {
-      setIsSending(false);
-    }
+    // Reset state and DOM fields
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    document.getElementById('contact-name').value = '';
+    document.getElementById('contact-email').value = '';
+    document.getElementById('contact-subject').value = '';
+    document.getElementById('contact-message').value = '';
   };
 
   return (
@@ -204,20 +159,10 @@ const Contact = () => {
                 
                 <button 
                   type="submit"
-                  disabled={isSending}
-                  className="w-full py-4 sm:py-5 bg-accent text-white rounded-2xl font-bold shadow-xl shadow-accent/20 hover:shadow-accent/40 transition-all transform hover:-translate-y-1 flex items-center justify-center space-x-3 cursor-pointer disabled:opacity-60 disabled:transform-none disabled:cursor-not-allowed"
+                  className="w-full py-4 sm:py-5 bg-accent text-white rounded-2xl font-bold shadow-xl shadow-accent/20 hover:shadow-accent/40 transition-all transform hover:-translate-y-1 flex items-center justify-center space-x-3 cursor-pointer"
                 >
-                  {isSending ? (
-                    <>
-                      <span>Sending Message...</span>
-                      <Loader2 size={20} className="animate-spin" />
-                    </>
-                  ) : (
-                    <>
-                      <span>Send Message</span>
-                      <Send size={20} />
-                    </>
-                  )}
+                  <span>Send Message</span>
+                  <Send size={20} />
                 </button>
               </form>
             </div>

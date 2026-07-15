@@ -4,17 +4,18 @@ import { Calculator, Check, ArrowRight } from 'lucide-react';
 import { useToast } from './ToastContext';
 
 const servicesList = [
-  { id: 'biz-site', name: 'Custom Business Website', price: 250000, type: 'one-time' },
-  { id: 'ecom-store', name: 'E-Commerce Store', price: 450000, type: 'one-time' },
-  { id: 'web-app', name: 'Custom Web Application', price: 600000, type: 'one-time' },
-  { id: 'seo', name: 'SEO Optimization', price: 80000, type: 'one-time' },
-  { id: 'hosting', name: 'Cloud Hosting Setup', price: 50000, type: 'one-time' },
-  { id: 'maintenance', name: 'Monthly Support & Maintenance', price: 30000, type: 'recurring' },
-  { id: 'branding', name: 'Branding & Logo Design', price: 100000, type: 'one-time' },
+  { id: 'biz-site', name: 'Custom Business Website', priceNaira: 300000, priceDollar: 300, hasPlus: true, type: 'one-time' },
+  { id: 'ecom-store', name: 'E-Commerce Store', priceNaira: 450000, priceDollar: 450, hasPlus: true, type: 'one-time' },
+  { id: 'web-app', name: 'Custom Web Application', priceNaira: 600000, priceDollar: 600, hasPlus: true, type: 'one-time' },
+  { id: 'seo', name: 'SEO Optimization', priceNaira: 100000, priceDollar: 100, hasPlus: true, type: 'one-time' },
+  { id: 'hosting', name: 'Cloud Hosting Setup', priceNaira: 50000, priceDollar: 50, hasPlus: false, type: 'one-time' },
+  { id: 'maintenance', name: 'Monthly Support & Maintenance', priceNaira: 100000, priceDollar: 100, hasPlus: false, type: 'recurring' },
+  { id: 'branding', name: 'Branding & Logo Design', priceNaira: 100000, priceDollar: 100, hasPlus: false, type: 'one-time' },
 ];
 
 const PricingCalculator = () => {
   const [selectedIds, setSelectedIds] = useState(['biz-site', 'seo']);
+  const [isDollar, setIsDollar] = useState(false);
   const { addToast } = useToast();
 
   const toggleService = (id) => {
@@ -32,10 +33,11 @@ const PricingCalculator = () => {
 
     servicesList.forEach(service => {
       if (selectedIds.includes(service.id)) {
+        const price = isDollar ? service.priceDollar : service.priceNaira;
         if (service.type === 'one-time') {
-          oneTimeTotal += service.price;
+          oneTimeTotal += price;
         } else {
-          recurringTotal += service.price;
+          recurringTotal += price;
         }
       }
     });
@@ -45,12 +47,20 @@ const PricingCalculator = () => {
 
   const { oneTimeTotal, recurringTotal } = calculateTotals();
 
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('en-NG', {
-      style: 'currency',
-      currency: 'NGN',
-      maximumFractionDigits: 0
-    }).format(value);
+  const formatPrice = (priceNaira, priceDollar, hasPlus) => {
+    if (isDollar) {
+      return `$${priceDollar.toLocaleString()}${hasPlus ? '+' : ''}`;
+    } else {
+      return `₦${priceNaira.toLocaleString()}${hasPlus ? '+' : ''}`;
+    }
+  };
+
+  const formatTotal = (value) => {
+    if (isDollar) {
+      return `$${value.toLocaleString()}`;
+    } else {
+      return `₦${value.toLocaleString()}`;
+    }
   };
 
   const handleRequestQuote = () => {
@@ -60,39 +70,21 @@ const PricingCalculator = () => {
       return;
     }
 
-    // Prefill Contact form message
-    const msgElement = document.getElementById('contact-message');
-    const subjectElement = document.getElementById('contact-subject');
+    const phoneNumber = "2348039579410";
+    let messageText = `Hi Michael! I used your website estimator and would like a custom quote for the following services:\n\n`;
+    selectedServices.forEach(s => {
+      const priceText = formatPrice(s.priceNaira, s.priceDollar, s.hasPlus);
+      messageText += `✔ ${s.name} (${priceText}${s.type === 'recurring' ? '/mo' : ''})\n`;
+    });
     
-    if (subjectElement) {
-      subjectElement.value = 'Custom Project Quote Request';
-    }
+    messageText += `\nEstimated Price Summary:`;
+    if (oneTimeTotal > 0) messageText += `\n- Setup Cost: ${formatTotal(oneTimeTotal)}`;
+    if (recurringTotal > 0) messageText += `\n- Recurring Support: ${formatTotal(recurringTotal)}/month`;
+    messageText += `\n\nLet's schedule a call to discuss the project details!`;
 
-    if (msgElement) {
-      let messageText = `Hi Michael! I used your website estimator and would like a custom quote for the following services:\n\n`;
-      selectedServices.forEach(s => {
-        messageText += `✔ ${s.name} (${formatCurrency(s.price)}${s.type === 'recurring' ? '/mo' : ''})\n`;
-      });
-      messageText += `\nEstimated Price Summary:`;
-      if (oneTimeTotal > 0) messageText += `\n- Setup Cost: ${formatCurrency(oneTimeTotal)}`;
-      if (recurringTotal > 0) messageText += `\n- Recurring Support: ${formatCurrency(recurringTotal)}/month`;
-      messageText += `\n\nLet's schedule a call to discuss the project details!`;
-      
-      msgElement.value = messageText;
-      
-      // Dispatch input event for React control (in case it is controlled)
-      const event = new Event('input', { bubbles: true });
-      msgElement.dispatchEvent(event);
-    }
-
-    // Scroll to contact form
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      const navbarHeight = 72;
-      const top = contactSection.getBoundingClientRect().top + window.scrollY - navbarHeight;
-      window.scrollTo({ top, behavior: 'smooth' });
-      addToast('Calculator details loaded into contact form below!', 'success');
-    }
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+    window.open(whatsappUrl, '_blank');
+    addToast('Redirecting to WhatsApp to send your quote request...', 'success');
   };
 
   return (
@@ -119,10 +111,40 @@ const PricingCalculator = () => {
           {/* Services Checklist */}
           <div className="lg:col-span-7 bg-white dark:bg-[#0d1527] rounded-[32px] p-6 sm:p-10 shadow-xl border border-gray-100 dark:border-gray-800/50 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-primary dark:text-white mb-8 flex items-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-primary dark:text-white mb-6 flex items-center">
                 <Calculator size={24} className="text-accent mr-3" />
                 Select Your Services
               </h3>
+
+              {/* Currency Toggle */}
+              <div className="flex items-center justify-between mb-8 p-3 rounded-2xl bg-gray-50 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800/60">
+                <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 ml-1">Currency</span>
+                <div className="flex items-center space-x-2 bg-white dark:bg-gray-950 p-1 rounded-xl shadow-inner border border-gray-100 dark:border-gray-900">
+                  <button
+                    type="button"
+                    onClick={() => setIsDollar(false)}
+                    className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all focus:outline-none cursor-pointer ${
+                      !isDollar
+                        ? 'bg-accent text-white shadow-md'
+                        : 'text-gray-500 hover:text-primary dark:hover:text-white'
+                    }`}
+                  >
+                    ₦ Naira
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsDollar(true)}
+                    className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all focus:outline-none cursor-pointer ${
+                      isDollar
+                        ? 'bg-accent text-white shadow-md'
+                        : 'text-gray-500 hover:text-primary dark:hover:text-white'
+                    }`}
+                  >
+                    $ Dollar
+                  </button>
+                </div>
+              </div>
+
               <div className="space-y-4">
                 {servicesList.map(service => {
                   const isChecked = selectedIds.includes(service.id);
@@ -154,7 +176,7 @@ const PricingCalculator = () => {
                         </div>
                       </div>
                       <span className="font-bold text-accent text-sm sm:text-base whitespace-nowrap">
-                        {formatCurrency(service.price)}
+                        {formatPrice(service.priceNaira, service.priceDollar, service.hasPlus)}
                         {service.type === 'recurring' && <span className="text-xs text-gray-500">/mo</span>}
                       </span>
                     </button>
@@ -180,7 +202,7 @@ const PricingCalculator = () => {
                     <span className="text-xs text-white/50">Development & branding</span>
                   </div>
                   <span className="text-2xl sm:text-3xl font-extrabold text-white">
-                    {formatCurrency(oneTimeTotal)}
+                    {formatTotal(oneTimeTotal)}
                   </span>
                 </div>
 
@@ -190,7 +212,7 @@ const PricingCalculator = () => {
                     <span className="text-xs text-white/50">Hosting, updates & backups</span>
                   </div>
                   <span className="text-2xl sm:text-3xl font-extrabold text-accent-light">
-                    {formatCurrency(recurringTotal)}
+                    {formatTotal(recurringTotal)}
                     <span className="text-xs text-white/50">/mo</span>
                   </span>
                 </div>
