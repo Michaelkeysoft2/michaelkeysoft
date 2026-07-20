@@ -6,21 +6,21 @@ const CacPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Check if the user already dismissed the popup in the current session
-    const isDismissed = sessionStorage.getItem('cacPopupDismissed');
-    if (isDismissed) return;
+    if (!isOpen) {
+      const hasLoaded = sessionStorage.getItem('cacPopupHasLoaded');
+      const delay = hasLoaded ? 30000 : 10000;
 
-    // Show popup after 10 seconds
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 10000);
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+        sessionStorage.setItem('cacPopupHasLoaded', 'true');
+      }, delay);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   const handleClose = () => {
     setIsOpen(false);
-    sessionStorage.setItem('cacPopupDismissed', 'true');
   };
 
   const phoneNumber = "2348039579410";
@@ -85,6 +85,10 @@ const CacPopup = () => {
                 <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
                 <span>NGO, Association, & Church Registration</span>
               </div>
+              <div className="flex items-center space-x-2 text-xs text-gray-600 dark:text-gray-300">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
+                <span>NIN Registration Plastic ID card services</span>
+              </div>
             </div>
 
             {/* Action Button */}
@@ -96,7 +100,7 @@ const CacPopup = () => {
               className="mt-5 w-full py-3 px-4 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-xl font-bold text-sm shadow-md hover:shadow-[#25D366]/20 transition-all flex items-center justify-center space-x-2 group"
             >
               <MessageSquareCode size={18} className="group-hover:scale-110 transition-transform" />
-              <span>Register on WhatsApp</span>
+              <span>Click to Register</span>
               <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
             </a>
           </div>
