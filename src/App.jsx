@@ -5,6 +5,7 @@ import { ToastProvider } from './components/ToastContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import CacPopup from './components/CacPopup';
 import Home from './pages/Home';
 import CaseStudy from './pages/CaseStudy';
 import Resume from './pages/Resume';
@@ -26,6 +27,7 @@ function App() {
             </main>
             <Footer />
             <WhatsAppButton />
+            <CacPopup />
           </div>
         </Router>
       </ToastProvider>
