@@ -87,7 +87,7 @@ const CacPopup = () => {
               </div>
               <div className="flex items-center space-x-2 text-xs text-gray-600 dark:text-gray-300">
                 <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
-                <span>NIN Registration Plastic ID card services</span>
+                <span>(NIN Registration & Plastic ID card services)</span>
               </div>
             </div>
 
