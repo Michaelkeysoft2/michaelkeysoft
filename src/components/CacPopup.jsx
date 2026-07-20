@@ -8,7 +8,7 @@ const CacPopup = () => {
   useEffect(() => {
     if (!isOpen) {
       const hasLoaded = sessionStorage.getItem('cacPopupHasLoaded');
-      const delay = hasLoaded ? 20000 : 3000;
+      const delay = hasLoaded ? 15000 : 3000;
 
       const timer = setTimeout(() => {
         setIsOpen(true);
