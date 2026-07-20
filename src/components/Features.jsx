@@ -72,6 +72,12 @@ const Features = () => {
                     <span className="font-medium">{industry}</span>
                   </div>
                 ))}
+                <div className="sm:col-span-2 flex items-center space-x-3 bg-accent/20 dark:bg-accent/15 p-4 rounded-2xl backdrop-blur-sm border border-accent/30 hover:bg-accent/25 transition-all shadow-md">
+                  <Building2 className="w-5 h-5 text-accent flex-shrink-0" />
+                  <span className="font-semibold text-white">
+                    We do CAC Registration for Business and Company
+                  </span>
+                </div>
               </div>
             </div>
           </motion.div>

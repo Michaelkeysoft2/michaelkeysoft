@@ -196,6 +196,15 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      
+      {/* RC Badge - aligned exactly with the logo icon */}
+      <div className="container mx-auto px-4 sm:px-6 relative pointer-events-none">
+        <div className="absolute top-0 left-4 sm:left-6 pointer-events-auto bg-gray-100/90 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1 rounded-b-xl border border-t-0 border-gray-200/50 dark:border-gray-800/50 shadow-md transition-all duration-300">
+          <span className="text-[10px] sm:text-xs font-bold tracking-wider text-slate-600 dark:text-slate-300">
+            RC: 3639456
+          </span>
+        </div>
+      </div>
     </nav>
   );
 };
