@@ -6,8 +6,8 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('theme');
     if (saved) return saved;
-    // Default to dark to preserve the cool dark matrix/navy aesthetic
-    return 'dark';
+    // Default to light mode for a clean, professional first impression
+    return 'light';
   });
 
   useEffect(() => {

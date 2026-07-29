@@ -57,7 +57,7 @@ const Services = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary dark:text-white mb-4">
               Comprehensive Solutions
             </h2>
-            <div className="w-20 h-1.5 bg-accent mx-auto rounded-full mb-4 sm:mb-6"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-accent via-blue-400 to-cyan-400 mx-auto rounded-full mb-4 sm:mb-6"></div>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
               We offer end-to-end digital services—from building your website to keeping it fast, secure, and visible.
             </p>
@@ -82,7 +82,7 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white dark:bg-[#0d1527] p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-800/50 group"
+                  className="bg-white dark:bg-[#0d1527] p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-800/50 group hover:-translate-y-1 relative overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-accent before:via-blue-400 before:to-cyan-400 before:opacity-0 hover:before:opacity-100 before:transition-opacity"
                 >
                   <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-md group-hover:rotate-6 transition-transform`}>
                     {service.icon}
@@ -110,7 +110,7 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white dark:bg-[#0d1527] p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-800/50 group"
+                  className="bg-white dark:bg-[#0d1527] p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-800/50 group hover:-translate-y-1 relative overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-accent before:via-blue-400 before:to-cyan-400 before:opacity-0 hover:before:opacity-100 before:transition-opacity"
                 >
                   <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-md group-hover:rotate-6 transition-transform`}>
                     {service.icon}

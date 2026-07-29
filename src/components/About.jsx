@@ -40,7 +40,7 @@ const About = () => {
             className="w-full lg:w-1/2"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary dark:text-white mb-4 sm:mb-6">
-              Your Technical Partner For <span className="text-accent">Growth</span>
+              Your Technical Partner For <span className="bg-gradient-to-r from-accent to-cyan-500 bg-clip-text text-transparent">Growth</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 leading-relaxed">
               At MichaelKeysoft, we build high-performing websites and deliver reliable technical support that keep your business running smoothly. We handle the complexity of technology so you can focus on what matters most—growing your business.
@@ -59,7 +59,7 @@ const About = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
               {values.map((value) => (
                 <div key={value.title} className="flex space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gray-50 dark:bg-gray-900 border border-gray-100/50 dark:border-gray-800/80 rounded-2xl flex items-center justify-center shadow-sm">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 border border-gray-100/50 dark:border-gray-800/80 rounded-2xl flex items-center justify-center shadow-sm">
                     {value.icon}
                   </div>
                   <div>

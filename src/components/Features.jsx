@@ -35,7 +35,7 @@ const Features = () => {
             className="bg-white dark:bg-[#0d1527] p-8 lg:p-12 rounded-[40px] shadow-xl border border-gray-100 dark:border-gray-800/50"
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-primary dark:text-white mb-8">
-              Why Choose <span className="text-accent">MichaelKeysoft?</span>
+              Why Choose <span className="bg-gradient-to-r from-accent to-cyan-500 bg-clip-text text-transparent">MichaelKeysoft?</span>
             </h2>
             <ul className="space-y-4">
               {reasons.map((reason, index) => (
@@ -63,7 +63,7 @@ const Features = () => {
             
             <div className="relative z-10">
               <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-white">
-                Industries We <span className="text-accent">Serve</span>
+                Industries We <span className="text-cyan-300">Serve</span>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {industries.map((industry, index) => (
