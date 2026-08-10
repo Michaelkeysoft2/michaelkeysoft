@@ -24,6 +24,16 @@ const projects = [
     github: 'https://github.com/Michaelkeysoft2/foodprice-solution',
     tags: ['React', 'Node.js', 'Commerce', 'Scalable'],
   },
+  {
+    title: 'SoftTap VTU & Billing',
+    category: 'Fintech / Utility Payments',
+    slug: 'softtap',
+    description: 'A lightning-fast Virtual Top-Up (VTU) platform enabling automated payments for data, TV subscriptions, electricity bills, and result checkers in Nigeria.',
+    image: '/projects/softtap.png',
+    link: 'https://softtap.vercel.app/',
+    github: 'https://github.com/Michaelkeysoft2/softtap',
+    tags: ['Next.js', 'Tailwind', 'Framer Motion', 'Vercel'],
+  },
 ];
 
 const Projects = () => {

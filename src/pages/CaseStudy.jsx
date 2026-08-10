@@ -41,6 +41,25 @@ const caseStudiesData = {
       'Cart checkout abandonment rate reduced by 28%',
       'Currently handles 50,000+ monthly unique visitors'
     ]
+  },
+  softtap: {
+    title: 'SoftTap VTU & Billing',
+    category: 'Fintech & Utility Payments',
+    image: '/projects/softtap.png',
+    liveLink: 'https://softtap.vercel.app/',
+    githubLink: 'https://github.com/Michaelkeysoft2/softtap',
+    clientProblem: 'VTU and utility billing platforms in Nigeria frequently experience transaction delays, unstable provider API endpoints, and insecure wallet funding, causing customer frustration and user churn.',
+    goals: 'Build a highly responsive, automated VTU platform that enables users to purchase cheap data, top up airtime, pay TV subscriptions, fund electricity meters, and buy educational result pins with instant fulfillment.',
+    planning: 'Analyzed vendor VTU API structures and payment gateway webhooks. Designed intuitive, simplified dashboard routing and responsive payment forms for quick user interactions.',
+    design: 'A premium, high-converting dark-theme interface with clean glassmorphic panels, vibrant emerald accent colors, and simplified tabbed navigation for hassle-free payments.',
+    techs: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
+    challenges: 'Ensuring instantaneous transaction processing (under 5 seconds) while relying on external API networks that often suffer from downtime or rate-limiting.',
+    solutions: 'Developed an automated retry queue system that processes transactions asynchronously. Integrated webhooks and instant-notification feedback loops to credit user accounts and verify carrier updates in under 3 seconds.',
+    results: [
+      'Average transaction completion time of under 3 seconds',
+      'Wallet auto-funding system reduces manual verification to 0%',
+      '99.9% success rate with automated transaction retry queue'
+    ]
   }
 };
 

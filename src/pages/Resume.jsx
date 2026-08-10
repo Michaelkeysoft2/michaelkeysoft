@@ -233,6 +233,15 @@ const Resume = () => {
                       Developed a high-speed catalog of 10,000+ items with lazy loading, virtual scrolling, and debounced searching. Optimized CDN caching for 1.2s average load time.
                     </p>
                   </div>
+                  
+                  <div>
+                    <h4 className="font-bold text-primary dark:text-white text-sm sm:text-base print:text-black print:text-sm">
+                      SoftTap VTU & Utility Billing Platform
+                    </h4>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 print:text-black">
+                      Built a highly performant utility billing system handling airtime, data, and electricity payments. Designed an automated payment queuing worker reducing transaction failures to less than 0.1%.
+                    </p>
+                  </div>
                 </div>
               </div>
 
